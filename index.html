@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>羊了个羊 — 9 关闯关</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px;
+        background: #0c0c12;
+        color: #e6e6f0;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      #level-label {
+        font-size: 0.95rem;
+        color: #a0a0b8;
+      }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        max-width: 480px;
+      }
+      .toolbar button {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid #3a3a50;
+        background: #1a1a28;
+        color: #e6e6f0;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+      .toolbar button:hover {
+        background: #2a2a40;
+      }
+      #btn-next {
+        border-color: #8fd48a;
+        color: #8fd48a;
+      }
+      canvas {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+      }
+      #game-status {
+        font-size: 0.9rem;
+        color: #8888a0;
+        min-height: 1.2em;
+        text-align: center;
+      }
+      .slot-wrap {
+        width: 100%;
+        max-width: 480px;
+      }
+      .slot-label {
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 6px;
+      }
+      #slot-bar {
+        display: flex;
+        gap: 6px;
+        padding: 10px;
+        background: #1a1a28;
+        border-radius: 8px;
+        border: 1px solid #3a3a50;
+      }
+      .slot-cell {
+        flex: 1;
+        aspect-ratio: 1;
+        max-width: 56px;
+        border-radius: 8px;
+        border: 2px dashed #3a3a50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+      }
+      .hint {
+        margin: 0;
+        font-size: 0.8rem;
+        color: #666;
+        text-align: center;
+        max-width: 28rem;
+      }
+      .hint a {
+        color: #8eb4e8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>羊了个羊</h1>
+    <p id="level-label">第 1 关</p>
+    <div class="toolbar">
+      <button type="button" id="btn-retry">重试本关</button>
+      <button type="button" id="btn-next">下一关</button>
+      <button type="button" id="btn-reset">从头开始</button>
+    </div>
+    <canvas id="game-canvas" width="480" height="440" aria-label="游戏区域"></canvas>
+    <p id="game-status">加载中…</p>
+    <div class="slot-wrap">
+      <div class="slot-label">槽位（最多 7 个，3 个相同消除）</div>
+      <div id="slot-bar"></div>
+    </div>
+    <p class="hint">
+      固定 9 关闯关，关卡不可修改。槽满则失败，清空场上牌则过关。
+      <a href="../../eluosi/web/index.html">俄罗斯方块 →</a>
+    </p>
+    <script src="levels.js"></script>
+    <script src="sheep.js"></script>
+  </body>
+</html>
