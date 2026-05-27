@@ -28,10 +28,23 @@
 
   let nextTileId = 1;
 
+  /** Fisher-Yates 洗牌 */
+  function shuffleInPlace(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+    return arr;
+  }
+
+  /** 克隆关卡牌面，发牌前打乱图案顺序（位置与层数不变） */
   function cloneTiles(raw) {
-    return raw.map((t) => ({
+    const types = shuffleInPlace(raw.map((t) => t.type));
+    return raw.map((t, i) => ({
       id: nextTileId++,
-      type: t.type,
+      type: types[i],
       layer: t.layer ?? 0,
       x: t.x,
       y: t.y,
